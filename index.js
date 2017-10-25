@@ -4,6 +4,8 @@ var shouldUseInstrumentedBuild = require('./utils').shouldUseInstrumentedBuild;
 module.exports = {
   name: 'loader.js',
 
+  //test
+
   init: function() {
     this._super.init && this._super.init.apply(this, arguments);
 

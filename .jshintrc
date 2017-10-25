@@ -21,6 +21,7 @@
   "proto": true,
   "strict": true,
   "indent": 2,
+  "esversion": 6,
   "camelcase": false,
   "node": false,
   "browser": true,
