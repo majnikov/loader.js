@@ -267,10 +267,22 @@ var loader, define, requireModule, require, requirejs;
   };
 
   function missingModule(id, referrer) {
-    throw new Error('Could not find module `' + id + '` imported from `' + referrer + '`');
+    var error = new Error('Could not find module `' + id + '` imported from `' + referrer + '`');
+    if (referrer !== '(require)') {
+      console.error(error);
+    }
+    throw error;
+  }
+
+  function __normalize(id, referrer) {
+    if (id.charAt(0) !== '/') {
+      return id.replace('/addon/', '/');
+    }
+    return referrer.split('/').shift() + id;
   }
 
   function findModule(id, referrer, pending) {
+    id = __normalize(id, referrer);
     heimdall.increment(__findModule);
     var mod = registry[id] || registry[id + '/index'];
 
